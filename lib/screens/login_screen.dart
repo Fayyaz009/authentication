@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ValidationUtils.userNameValidation(value),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  hintText: 'Enter username',
+                                  hintText: 'John Doe',
                                 ),
 
                               if (!isLogin) const SizedBox(height: 20),
@@ -322,7 +322,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               ),
 
-                              const SizedBox(height: 20),
+                              const SizedBox(height: 10),
 
                               // Toggle Sign In / Sign Up
                               BlocBuilder<AuthBloc, AuthState>(
