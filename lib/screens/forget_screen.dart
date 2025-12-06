@@ -116,7 +116,9 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             width: double.infinity,
                             child: CustomButton(
                               // show spinner when sending, else text
-                              buttonName: loading
+                              buttonName:
+                                  state is AuthLoading &&
+                                      state.action == AuthAction.resetPassword
                                   ? SizedBox(
                                       height: 20.0,
                                       width: 20.0,

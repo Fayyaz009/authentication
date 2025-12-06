@@ -177,24 +177,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                               passwordController.clear();
                                               _formKey.currentState!.reset();
                                             },
-                                      child:
-                                          state is AuthLoading &&
-                                              state.action ==
-                                                  AuthAction.resetPassword
-                                          ? const SizedBox(
-                                              height: 20,
-                                              width: 20,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                              ),
-                                            )
-                                          : Text(
-                                              'Reset',
-                                              style: GoogleFonts.poppins(
-                                                color: Colors.deepPurpleAccent,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
+                                      child: Text(
+                                        'Reset',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.deepPurpleAccent,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
