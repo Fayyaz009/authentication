@@ -177,7 +177,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                               passwordController.clear();
                                               _formKey.currentState!.reset();
                                             },
-                                      child: state is AuthLoading
+                                      child:
+                                          state is AuthLoading &&
+                                              state.action ==
+                                                  AuthAction.resetPassword
                                           ? const SizedBox(
                                               height: 20,
                                               width: 20,
@@ -201,7 +204,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               // Sign In / Sign Up Button
                               BlocBuilder<AuthBloc, AuthState>(
                                 builder: (context, state) {
-                                  final bool loading = state is AuthLoading;
+                                  final bool loading =
+                                      state is AuthLoading &&
+                                          state.action == AuthAction.signIn ||
+                                      state is AuthLoading &&
+                                          state.action == AuthAction.signUp;
                                   return SizedBox(
                                     width: double.infinity,
                                     child: CustomButton(
@@ -216,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           : Text(
                                               isLogin ? 'Sign in' : 'Sign Up',
                                             ),
-                                      onPressed: loading
+                                      onPressed: state is AuthLoading
                                           ? null
                                           : isLogin
                                           ? () {
