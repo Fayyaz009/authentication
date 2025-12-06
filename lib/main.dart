@@ -20,7 +20,7 @@ void main() async {
         BlocProvider<AuthBloc>(
           create: (context) =>
               AuthBloc()
-                ..add(CheckAuthStatus()), //.. mtlb keh plus yeh kam b kero
+                ..add(CheckAuthStatus()), 
         ),
       ],
       child: const MyApp(),
@@ -51,3 +51,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
