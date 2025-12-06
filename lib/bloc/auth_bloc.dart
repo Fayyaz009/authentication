@@ -32,17 +32,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading(action: AuthAction.signIn));
     try {
-      UserCredential? userCredential = await _services.signIn(
-        event.email,
-        event.password,
-      );
-      if (userCredential != null) {
-        emit(
-          Authenticated(
-            userCredential.user!.uid,
-            userCredential.user!.displayName ?? 'No Display Name',
-          ),
-        );
+      User? user = await _services.signIn(event.email, event.password);
+      if (user != null) {
+        emit(Authenticated(user.uid, user.displayName ?? 'No Display Name'));
       } else {
         emit(
           AuthError(

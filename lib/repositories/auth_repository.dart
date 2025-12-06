@@ -7,14 +7,15 @@ class AuthRepository {
   AuthRepository(this._firebaseAuth, this._googleSignIn);
 
   //login with email and password
-  Future<UserCredential?> signIn(String email, String password) async {
+  Future<User?> signIn(String email, String password) async {
     try {
       UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
       await userCredential.user!.reload();
       if (userCredential.user!.emailVerified ||
           userCredential.user!.isAnonymous) {
-        return userCredential;
+        User? user = _firebaseAuth.currentUser;
+        return user;
       } else {
         return null;
       }
