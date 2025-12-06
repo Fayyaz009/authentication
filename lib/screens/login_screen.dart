@@ -1,6 +1,6 @@
 import 'package:auth_practice/reuseable_widgets/auth_divider.dart';
 import 'package:auth_practice/reuseable_widgets/custom_button.dart';
-import 'package:auth_practice/reuseable_widgets/texformfield.dart';
+import 'package:auth_practice/reuseable_widgets/appformfield.dart';
 import 'package:auth_practice/reuseable_widgets/validation_utils.dart';
 import 'package:auth_practice/screens/forget_screen.dart';
 import 'package:flutter/material.dart';
@@ -117,6 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   validator: (value) =>
                                       ValidationUtils.userNameValidation(value),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   hintText: 'Enter username',
                                 ),
 
@@ -129,6 +131,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 prefixIcon: const Icon(Icons.email_outlined),
                                 validator: (value) =>
                                     ValidationUtils.emailValidation(value),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 hintText: 'abc@gmail.com',
                               ),
                               const SizedBox(height: 20),
@@ -140,6 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 prefixIcon: const Icon(Icons.password_outlined),
                                 validator: (value) =>
                                     ValidationUtils.passwordValidation(value),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 hintText: 'Abc123@',
                                 obscureText: false,
                               ),
@@ -333,9 +339,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                             : () {
                                                 setState(() {
                                                   isLogin = !isLogin;
+                                                  emailController.clear();
+                                                  passwordController.clear();
                                                 });
                                                 if (isLogin) {
                                                   userController.clear();
+                                                  emailController.clear();
+                                                  passwordController.clear();
                                                 }
                                               },
                                         child: Text(

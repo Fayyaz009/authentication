@@ -11,6 +11,7 @@ class AppFormField extends StatelessWidget {
   final Color? decorationColor;
   final TextStyle? style;
   final Color? cursorColor;
+  final AutovalidateMode? autovalidateMode;
 
   const AppFormField({
     super.key,
@@ -24,6 +25,7 @@ class AppFormField extends StatelessWidget {
     this.decorationColor,
     this.style,
     this.cursorColor,
+    this.autovalidateMode,
   });
 
   @override
@@ -39,7 +41,7 @@ class AppFormField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       cursorColor: cursorColor ?? baseBorderColor,
       style: style ?? const TextStyle(color: Colors.black),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: autovalidateMode,
 
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
@@ -54,9 +56,7 @@ class AppFormField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: BorderSide(
-            color: baseBorderColor.withOpacity(0.6),
-          ), // NO color change
+          borderSide: BorderSide(color: baseBorderColor), // NO color change
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius,
