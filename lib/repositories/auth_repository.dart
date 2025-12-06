@@ -24,7 +24,7 @@ class AuthRepository {
   }
 
   //Google Sign in
-  Future<UserCredential> googleSignIn() async {
+  Future<User?> googleSignIn() async {
     try {
       await _googleSignIn.initialize(
         clientId:
@@ -35,9 +35,13 @@ class AuthRepository {
       AuthCredential credential = GoogleAuthProvider.credential(
         idToken: googleUser.idToken,
       );
-      UserCredential user = await _firebaseAuth.signInWithCredential(
+      UserCredential userCredential = await _firebaseAuth.signInWithCredential(
         credential,
       );
+      User? user = userCredential.user;
+      if (user == null) {
+        return null;
+      }
       return user;
     } catch (e) {
       rethrow;
@@ -71,10 +75,12 @@ class AuthRepository {
     }
   }
 
-  Future<UserCredential> anonymousSignIn() async {
+  Future<User?> anonymousSignIn() async {
     try {
-      UserCredential user = await _firebaseAuth.signInAnonymously();
-      user.user!.updateDisplayName('Guest');
+      UserCredential userCredential = await _firebaseAuth.signInAnonymously();
+      await userCredential.user!.reload();
+      await userCredential.user!.updateDisplayName('Guest');
+      User? user = _firebaseAuth.currentUser;
       return user;
     } catch (e) {
       rethrow;

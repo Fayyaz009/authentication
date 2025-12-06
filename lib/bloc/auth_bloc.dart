@@ -96,13 +96,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ); //enum jo bnaya hai us se le rhy hai takeh baki buttons pr na show ho loading
     try {
       await Future.delayed(Duration(seconds: 3));
-      UserCredential userCredential = await _services.googleSignIn();
-      emit(
-        Authenticated(
-          userCredential.user!.uid,
-          userCredential.user!.displayName ?? 'No Display Name',
-        ),
-      );
+      User? user = await _services.googleSignIn();
+      emit(Authenticated(user!.uid, user.displayName ?? 'No Display Name'));
     } catch (error) {
       emit(AuthError(errorMessage: error.toString()));
     }
@@ -148,13 +143,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading(action: AuthAction.anonymous));
     try {
-      UserCredential userCredential = await _services.anonymousSignIn();
-      emit(
-        Authenticated(
-          userCredential.user!.uid,
-          userCredential.user!.displayName ?? 'No Display Name',
-        ),
-      );
+      User? user = await _services.anonymousSignIn();
+      emit(Authenticated(user!.uid, user.displayName ?? 'No Display Name'));
     } catch (e) {
       emit(AuthError(errorMessage: e.toString()));
     }
