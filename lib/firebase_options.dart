@@ -87,4 +87,5 @@ class DefaultFirebaseOptions {
     authDomain: 'fir-authentication-93b7c.firebaseapp.com',
     storageBucket: 'fir-authentication-93b7c.firebasestorage.app',
   );
+
 }
