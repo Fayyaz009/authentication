@@ -18,9 +18,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) =>
-              AuthBloc()
-                ..add(CheckAuthStatus()), //isko bhi push kero isko bhi dekho
+          create: (context) => AuthBloc()..add(CheckAuthStatus()),
         ),
       ],
       child: const MyApp(),
