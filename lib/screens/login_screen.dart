@@ -173,14 +173,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       const ForgetScreen(),
                                                 ),
                                               );
+                                              emailController.clear();
+                                              passwordController.clear();
+                                              _formKey.currentState!.reset();
                                             },
-                                      child: Text(
-                                        'Reset',
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.deepPurpleAccent,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
+                                      child: state is AuthLoading
+                                          ? const SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                strokeWidth: 2,
+                                              ),
+                                            )
+                                          : Text(
+                                              'Reset',
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.deepPurpleAccent,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
                                     ),
                                   ],
                                 ),
@@ -339,6 +350,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             : () {
                                                 setState(() {
                                                   isLogin = !isLogin;
+                                                  _formKey.currentState!
+                                                      .reset();
                                                   emailController.clear();
                                                   passwordController.clear();
                                                 });
