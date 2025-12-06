@@ -1,6 +1,6 @@
 import 'package:auth_practice/bloc/auth_bloc.dart';
 import 'package:auth_practice/reuseable_widgets/custom_button.dart';
-import 'package:auth_practice/reuseable_widgets/texformfield.dart';
+import 'package:auth_practice/reuseable_widgets/appformfield.dart';
 import 'package:auth_practice/reuseable_widgets/validation_utils.dart';
 import 'package:auth_practice/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
             },
             buildWhen: (previous, current) => previous != current,
             builder: (context, state) {
-              final sending = state is AuthLoading;
+              final loading = state is AuthLoading;
 
               return Center(
                 child: Card(
@@ -116,7 +116,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             width: double.infinity,
                             child: CustomButton(
                               // show spinner when sending, else text
-                              buttonName: sending
+                              buttonName: loading
                                   ? SizedBox(
                                       height: 20.0,
                                       width: 20.0,
@@ -130,7 +130,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                                   : const Text('Send Reset Link'),
                               backgroundColor: Colors.deepPurple,
                               textColor: Colors.white,
-                              onPressed: sending
+                              onPressed: loading
                                   ? null
                                   : () {
                                       // VALIDATION: dispatch only when form is VALID
