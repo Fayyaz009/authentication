@@ -160,6 +160,16 @@ class _ForgetScreenState extends State<ForgetScreen> {
                               ),
 
                               TextButton(
+                                onPressed: loading
+                                    ? null
+                                    : () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => LoginScreen(),
+                                          ),
+                                        );
+                                      },
                                 child: Text(
                                   "Login",
                                   style: GoogleFonts.poppins(
@@ -168,14 +178,6 @@ class _ForgetScreenState extends State<ForgetScreen> {
                                     color: Colors.deepPurpleAccent,
                                   ),
                                 ),
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LoginScreen(),
-                                    ),
-                                  );
-                                },
                               ),
                             ],
                           ),

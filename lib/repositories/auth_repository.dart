@@ -74,7 +74,7 @@ class AuthRepository {
   Future<UserCredential> anonymousSignIn() async {
     try {
       UserCredential user = await _firebaseAuth.signInAnonymously();
-
+      user.user!.updateDisplayName('Guest');
       return user;
     } catch (e) {
       rethrow;
